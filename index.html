@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorkForce Tracker - Small Business Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="8" fill="url(#gradient)"/>
+                    <path d="M16 8v8l6 3" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="16" cy="16" r="7" stroke="white" stroke-width="2"/>
+                    <defs>
+                        <linearGradient id="gradient" x1="0" y1="0" x2="32" y2="32">
+                            <stop stop-color="#6366f1"/>
+                            <stop offset="1" stop-color="#8b5cf6"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span>WorkForce</span>
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active" data-tab="dashboard">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                    </svg>
+                    Dashboard
+                </a>
+                <a href="#" class="nav-item" data-tab="workers">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
+                    </svg>
+                    Workers
+                </a>
+                <a href="#" class="nav-item" data-tab="tasks">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+                        <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 1 1 0 000 2H6a2 2 0 00-2 2v6a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-1a1 1 0 100-2h1a4 4 0 014 4v6a4 4 0 01-4 4H6a4 4 0 01-4-4V7a4 4 0 014-4z"/>
+                    </svg>
+                    Tasks
+                </a>
+                <a href="#" class="nav-item" data-tab="reports">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11 4a1 1 0 10-2 0v4a1 1 0 102 0V7zm-3 1a1 1 0 10-2 0v3a1 1 0 102 0V8zM8 9a1 1 0 00-2 0v2a1 1 0 102 0V9z"/>
+                    </svg>
+                    Reports
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="storage-indicator">
+                    <span class="storage-label">Local Storage</span>
+                    <span class="storage-status">Active</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <h1 id="page-title">Dashboard</h1>
+                    <span class="date-display" id="current-date"></span>
+                </div>
+                <div class="header-right">
+                    <button class="btn-primary" id="quick-add-btn">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"/>
+                        </svg>
+                        Quick Add
+                    </button>
+                </div>
+            </header>
+
+            <!-- Dashboard Tab -->
+            <div class="tab-content active" id="dashboard-tab">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon blue">
+                            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-label">Total Hours Today</span>
+                            <span class="stat-value" id="total-hours-today">0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon green">
+                            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-label">Active Workers</span>
+                            <span class="stat-value" id="active-workers">0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon purple">
+                            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14l-4-4 1.41-1.41L14 14.17l6.59-6.59L22 9l-8 8z"/>
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-label">Tasks Completed</span>
+                            <span class="stat-value" id="tasks-completed">0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon orange">
+                            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/>
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-label">Today's Earnings</span>
+                            <span class="stat-value" id="todays-earnings">$0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Today's Activities -->
+                <div class="dashboard-section">
+                    <div class="section-header">
+                        <h2>Today's Activities</h2>
+                        <button class="btn-text" id="view-all-activities">View All</button>
+                    </div>
+                    <div class="activities-list" id="todays-activities">
+                        <div class="empty-state">
+                            <svg width="48" height="48" fill="currentColor" opacity="0.3" viewBox="0 0 24 24">
+                                <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
+                            </svg>
+                            <p>No activities recorded today</p>
+                            <button class="btn-secondary" id="start-tracking">Start Tracking</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Workers Tab -->
+            <div class="tab-content" id="workers-tab">
+                <div class="section-header">
+                    <h2>Manage Workers</h2>
+                    <button class="btn-primary" id="add-worker-btn">Add Worker</button>
+                </div>
+                
+                <div class="workers-grid" id="workers-list">
+                    <!-- Workers will be dynamically added here -->
+                </div>
+            </div>
+
+            <!-- Tasks Tab -->
+            <div class="tab-content" id="tasks-tab">
+                <div class="section-header">
+                    <h2>Task Management</h2>
+                    <div class="filter-group">
+                        <select id="task-filter" class="select-filter">
+                            <option value="all">All Tasks</option>
+                            <option value="pending">Pending</option>
+                            <option value="in-progress">In Progress</option>
+                            <option value="completed">Completed</option>
+                        </select>
+                        <button class="btn-primary" id="add-task-btn">Add Task</button>
+                    </div>
+                </div>
+                
+                <div class="tasks-container" id="tasks-list">
+                    <!-- Tasks will be dynamically added here -->
+                </div>
+            </div>
+
+            <!-- Reports Tab -->
+            <div class="tab-content" id="reports-tab">
+                <div class="section-header">
+                    <h2>Reports & Analytics</h2>
+                    <div class="date-range-picker">
+                        <input type="date" id="report-start-date" class="date-input">
+                        <span>to</span>
+                        <input type="date" id="report-end-date" class="date-input">
+                        <button class="btn-secondary" id="generate-report">Generate Report</button>
+                    </div>
+                </div>
+                
+                <div class="report-content" id="report-content">
+                    <div class="empty-state">
+                        <svg width="48" height="48" fill="currentColor" opacity="0.3" viewBox="0 0 24 24">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                        </svg>
+                        <p>Select a date range to generate reports</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <!-- Quick Add Modal -->
+    <div class="modal" id="quick-add-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Quick Add Time Entry</h3>
+                <button class="modal-close" onclick="closeModal('quick-add-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="quick-add-form">
+                    <div class="form-group">
+                        <label for="quick-worker">Worker</label>
+                        <select id="quick-worker" required>
+                            <option value="">Select a worker...</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="quick-date">Date</label>
+                            <input type="date" id="quick-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="quick-hours">Hours</label>
+                            <input type="number" id="quick-hours" min="0.5" max="24" step="0.5" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="quick-task">Task Description</label>
+                        <textarea id="quick-task" rows="3" placeholder="e.g., Repair inner tube on Hiboy scooter, Local deliveries..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="quick-rate">Hourly Rate ($)</label>
+                        <input type="number" id="quick-rate" min="0" step="0.01" placeholder="15.00" required>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('quick-add-modal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Add Entry</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Worker Modal -->
+    <div class="modal" id="add-worker-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Worker</h3>
+                <button class="modal-close" onclick="closeModal('add-worker-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="add-worker-form">
+                    <div class="form-group">
+                        <label for="worker-name">Name</label>
+                        <input type="text" id="worker-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="worker-email">Email</label>
+                        <input type="email" id="worker-email">
+                    </div>
+                    <div class="form-group">
+                        <label for="worker-phone">Phone</label>
+                        <input type="tel" id="worker-phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="worker-rate">Default Hourly Rate ($)</label>
+                        <input type="number" id="worker-rate" min="0" step="0.01" placeholder="15.00">
+                    </div>
+                    <div class="form-group">
+                        <label for="worker-skills">Skills/Notes</label>
+                        <textarea id="worker-skills" rows="3" placeholder="e.g., Delivery, Repairs, General tasks..."></textarea>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('add-worker-modal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Add Worker</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Task Modal -->
+    <div class="modal" id="add-task-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Task</h3>
+                <button class="modal-close" onclick="closeModal('add-task-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="add-task-form">
+                    <div class="form-group">
+                        <label for="task-title">Task Title</label>
+                        <input type="text" id="task-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="task-description">Description</label>
+                        <textarea id="task-description" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="task-worker">Assign to Worker</label>
+                        <select id="task-worker">
+                            <option value="">Unassigned</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="task-priority">Priority</label>
+                            <select id="task-priority">
+                                <option value="low">Low</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="task-status">Status</label>
+                            <select id="task-status">
+                                <option value="pending">Pending</option>
+                                <option value="in-progress">In Progress</option>
+                                <option value="completed">Completed</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="task-due-date">Due Date</label>
+                        <input type="date" id="task-due-date">
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('add-task-modal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Add Task</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
