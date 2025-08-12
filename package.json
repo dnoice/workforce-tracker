@@ -1,0 +1,70 @@
+{
+  "name": "workforce-tracker",
+  "version": "1.0.0",
+  "description": "A comprehensive workforce management system for small businesses - track workers, hours, tasks, and generate reports",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx live-server --port=8080",
+    "dev": "npx live-server --port=8080 --watch=*.html,*.css,*.js",
+    "build": "echo 'No build required - static files only'",
+    "minify-css": "npx clean-css-cli -o styles.min.css styles.css",
+    "minify-js": "npx terser app.js -o app.min.js --compress --mangle",
+    "minify": "npm run minify-css && npm run minify-js",
+    "serve": "python3 -m http.server 8080",
+    "deploy": "echo 'Deploy to your preferred static hosting service'",
+    "backup": "node -e \"require('fs').writeFileSync('backup-' + Date.now() + '.json', localStorage.getItem('workforceData'))\"",
+    "test": "echo 'No tests configured yet'",
+    "lint": "npx eslint app.js",
+    "format": "npx prettier --write '*.{html,css,js,json,md}'"
+  },
+  "keywords": [
+    "workforce",
+    "management",
+    "time-tracking",
+    "task-management",
+    "small-business",
+    "employee-tracking",
+    "hours-logging",
+    "reports",
+    "dashboard",
+    "local-storage",
+    "web-app",
+    "pwa",
+    "offline-first",
+    "no-backend",
+    "client-side"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/workforce-tracker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/workforce-tracker/issues"
+  },
+  "homepage": "https://github.com/yourusername/workforce-tracker#readme",
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "clean-css-cli": "^5.6.2",
+    "terser": "^5.16.0",
+    "eslint": "^8.40.0",
+    "prettier": "^2.8.8"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie <= 11"
+  ],
+  "private": false,
+  "contributors": [],
+  "funding": {
+    "type": "individual",
+    "url": "https://github.com/sponsors/yourusername"
+  }
+}
