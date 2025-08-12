@@ -5,38 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WorkForce Pro - Advanced Business Management System</title>
     
-    <!-- Stylesheets -->
+    <!-- CSS Files -->
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/animations.css">
-    <link rel="stylesheet" href="css/responsive.css">
     
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
     
-    <!-- Chart.js for Analytics -->
+    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
-    <!-- PWA Support -->
+    <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#6366f1">
-    
-    <!-- SEO & Meta -->
-    <meta name="description" content="Professional workforce management system for small businesses">
-    <meta name="keywords" content="workforce, management, time tracking, business tools">
 </head>
 <body>
     <!-- Loading Screen -->
     <div id="loading-screen" class="loading-screen">
         <div class="loader">
             <svg width="80" height="80" viewBox="0 0 80 80">
-                <circle cx="40" cy="40" r="35" stroke="url(#gradient-loader)" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="164" stroke-dashoffset="164">
-                    <animate attributeName="stroke-dashoffset" values="164;0" dur="1.5s" repeatCount="indefinite"/>
+                <circle cx="40" cy="40" r="35" stroke="url(#gradient)" stroke-width="6" fill="none" stroke-linecap="round">
+                    <animate attributeName="stroke-dasharray" values="0 220;220 220" dur="1.5s" repeatCount="indefinite"/>
+                    <animateTransform attributeName="transform" type="rotate" values="0 40 40;360 40 40" dur="1.5s" repeatCount="indefinite"/>
                 </circle>
                 <defs>
-                    <linearGradient id="gradient-loader" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
                         <stop offset="0%" stop-color="#6366f1"/>
                         <stop offset="100%" stop-color="#8b5cf6"/>
                     </linearGradient>
@@ -46,414 +43,342 @@
         </div>
     </div>
 
-    <!-- Main Application Container -->
+    <!-- Main Application -->
     <div class="app-container" id="app">
-        
-        <!-- Enhanced Sidebar Navigation -->
+        <!-- Enhanced Sidebar -->
         <aside class="sidebar" id="sidebar">
-            <!-- Logo Section -->
-            <div class="logo-section">
+            <div class="sidebar-header">
                 <div class="logo">
-                    <svg width="40" height="40" viewBox="0 0 40 40" class="logo-svg">
+                    <svg width="40" height="40" viewBox="0 0 40 40" class="logo-icon">
+                        <rect width="40" height="40" rx="10" fill="url(#logo-gradient)"/>
+                        <path d="M20 10v10l7.5 3.75" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                        <circle cx="20" cy="20" r="9" stroke="white" stroke-width="2.5" fill="none"/>
+                        <circle cx="20" cy="20" r="2" fill="white"/>
                         <defs>
-                            <linearGradient id="logo-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#6366f1">
-                                    <animate attributeName="stop-color" values="#6366f1;#8b5cf6;#6366f1" dur="3s" repeatCount="indefinite"/>
-                                </stop>
-                                <stop offset="100%" stop-color="#8b5cf6">
-                                    <animate attributeName="stop-color" values="#8b5cf6;#6366f1;#8b5cf6" dur="3s" repeatCount="indefinite"/>
-                                </stop>
+                            <linearGradient id="logo-gradient" x1="0" y1="0" x2="40" y2="40">
+                                <stop stop-color="#6366f1"/>
+                                <stop offset="1" stop-color="#8b5cf6"/>
                             </linearGradient>
                         </defs>
-                        <rect width="40" height="40" rx="10" fill="url(#logo-gradient)"/>
-                        <path d="M20 10 L20 20 L26 23" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-                        <circle cx="20" cy="20" r="9" stroke="white" stroke-width="2.5" fill="none"/>
                     </svg>
                     <div class="logo-text">
-                        <span class="logo-title">WorkForce</span>
-                        <span class="logo-subtitle">Pro Edition</span>
+                        <span class="logo-main">WorkForce</span>
+                        <span class="logo-sub">Pro</span>
                     </div>
                 </div>
                 <button class="sidebar-toggle" id="sidebar-toggle">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
-
-            <!-- Search Box -->
-            <div class="sidebar-search">
-                <div class="search-box">
-                    <i class="fas fa-search search-icon"></i>
-                    <input type="text" placeholder="Search..." id="global-search" class="search-input">
-                    <kbd class="search-shortcut">⌘K</kbd>
+            
+            <!-- User Profile Section -->
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <i class="fas fa-user-tie"></i>
                 </div>
+                <div class="user-info">
+                    <span class="user-name">Business Owner</span>
+                    <span class="user-role">Administrator</span>
+                </div>
+                <button class="user-menu-btn" id="user-menu-btn">
+                    <i class="fas fa-ellipsis-v"></i>
+                </button>
             </div>
             
-            <!-- Main Navigation Menu -->
+            <!-- Enhanced Navigation -->
             <nav class="nav-menu">
                 <div class="nav-section">
                     <span class="nav-section-title">Main</span>
-                    
-                    <a href="#" class="nav-item active" data-tab="dashboard" data-tooltip="Dashboard Overview">
-                        <span class="nav-icon">
-                            <i class="fas fa-th-large"></i>
-                        </span>
-                        <span class="nav-text">Dashboard</span>
+                    <a href="#" class="nav-item active" data-tab="dashboard">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
                         <span class="nav-badge">Live</span>
                     </a>
-                    
-                    <a href="#" class="nav-item" data-tab="time-clock" data-tooltip="Time Clock">
-                        <span class="nav-icon">
-                            <i class="fas fa-user-clock"></i>
-                        </span>
-                        <span class="nav-text">Time Clock</span>
-                        <span class="nav-indicator"></span>
+                    <a href="#" class="nav-item" data-tab="timesheet">
+                        <i class="fas fa-clock"></i>
+                        <span>Timesheet</span>
                     </a>
-                    
-                    <a href="#" class="nav-item" data-tab="workers" data-tooltip="Manage Workers">
-                        <span class="nav-icon">
-                            <i class="fas fa-users"></i>
-                        </span>
-                        <span class="nav-text">Workers</span>
-                        <span class="nav-count" id="worker-count">0</span>
+                    <a href="#" class="nav-item" data-tab="workers">
+                        <i class="fas fa-users"></i>
+                        <span>Workers</span>
+                        <span class="nav-counter" id="worker-count">0</span>
                     </a>
-                    
-                    <a href="#" class="nav-item" data-tab="tasks" data-tooltip="Task Management">
-                        <span class="nav-icon">
-                            <i class="fas fa-tasks"></i>
-                        </span>
-                        <span class="nav-text">Tasks</span>
-                        <span class="nav-count" id="task-count">0</span>
+                    <a href="#" class="nav-item" data-tab="tasks">
+                        <i class="fas fa-tasks"></i>
+                        <span>Tasks</span>
+                        <span class="nav-counter" id="task-count">0</span>
                     </a>
-                    
-                    <a href="#" class="nav-item" data-tab="schedule" data-tooltip="Schedule & Calendar">
-                        <span class="nav-icon">
-                            <i class="fas fa-calendar-alt"></i>
-                        </span>
-                        <span class="nav-text">Schedule</span>
+                    <a href="#" class="nav-item" data-tab="schedule">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Schedule</span>
                     </a>
                 </div>
-
+                
                 <div class="nav-section">
                     <span class="nav-section-title">Financial</span>
-                    
-                    <a href="#" class="nav-item" data-tab="payments" data-tooltip="Payments & Invoices">
-                        <span class="nav-icon">
-                            <i class="fas fa-file-invoice-dollar"></i>
-                        </span>
-                        <span class="nav-text">Payments</span>
+                    <a href="#" class="nav-item" data-tab="invoices">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <span>Invoices</span>
                     </a>
-                    
-                    <a href="#" class="nav-item" data-tab="expenses" data-tooltip="Expense Tracking">
-                        <span class="nav-icon">
-                            <i class="fas fa-receipt"></i>
-                        </span>
-                        <span class="nav-text">Expenses</span>
+                    <a href="#" class="nav-item" data-tab="payments">
+                        <i class="fas fa-money-check-alt"></i>
+                        <span>Payments</span>
                     </a>
-                    
-                    <a href="#" class="nav-item" data-tab="reports" data-tooltip="Reports & Analytics">
-                        <span class="nav-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </span>
-                        <span class="nav-text">Analytics</span>
+                    <a href="#" class="nav-item" data-tab="expenses">
+                        <i class="fas fa-receipt"></i>
+                        <span>Expenses</span>
                     </a>
                 </div>
-
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">Analytics</span>
+                    <a href="#" class="nav-item" data-tab="reports">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Reports</span>
+                    </a>
+                    <a href="#" class="nav-item" data-tab="analytics">
+                        <i class="fas fa-analytics"></i>
+                        <span>Analytics</span>
+                    </a>
+                </div>
+                
                 <div class="nav-section">
                     <span class="nav-section-title">System</span>
-                    
-                    <a href="#" class="nav-item" data-tab="settings" data-tooltip="Settings">
-                        <span class="nav-icon">
-                            <i class="fas fa-cog"></i>
-                        </span>
-                        <span class="nav-text">Settings</span>
+                    <a href="#" class="nav-item" data-tab="settings">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
                     </a>
-                    
-                    <a href="#" class="nav-item" data-tab="backup" data-tooltip="Backup & Restore">
-                        <span class="nav-icon">
-                            <i class="fas fa-database"></i>
-                        </span>
-                        <span class="nav-text">Backup</span>
+                    <a href="#" class="nav-item" data-tab="backup">
+                        <i class="fas fa-database"></i>
+                        <span>Backup</span>
                     </a>
                 </div>
             </nav>
             
-            <!-- Sidebar Footer with Status -->
+            <!-- Sidebar Footer -->
             <div class="sidebar-footer">
                 <div class="storage-widget">
                     <div class="storage-header">
                         <i class="fas fa-hdd"></i>
                         <span>Local Storage</span>
                     </div>
-                    <div class="storage-bar">
-                        <div class="storage-used" id="storage-used" style="width: 15%"></div>
-                    </div>
-                    <div class="storage-info">
-                        <span id="storage-text">1.2 MB / 10 MB</span>
+                    <div class="storage-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="storage-usage" style="width: 25%"></div>
+                        </div>
+                        <span class="storage-text">2.5 MB / 10 MB</span>
                     </div>
                 </div>
                 
-                <div class="user-widget">
-                    <div class="user-avatar">
-                        <svg width="32" height="32" viewBox="0 0 32 32">
-                            <circle cx="16" cy="16" r="16" fill="url(#avatar-gradient)"/>
-                            <text x="16" y="20" text-anchor="middle" fill="white" font-size="14" font-weight="600">A</text>
-                            <defs>
-                                <linearGradient id="avatar-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" stop-color="#06b6d4"/>
-                                    <stop offset="100%" stop-color="#3b82f6"/>
-                                </linearGradient>
-                            </defs>
-                        </svg>
-                    </div>
-                    <div class="user-info">
-                        <span class="user-name">Admin</span>
-                        <span class="user-role">Owner</span>
-                    </div>
-                    <button class="user-menu-btn" id="user-menu-btn">
-                        <i class="fas fa-ellipsis-v"></i>
+                <div class="quick-actions">
+                    <button class="quick-action-btn" title="Notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-dot"></span>
+                    </button>
+                    <button class="quick-action-btn" title="Help">
+                        <i class="fas fa-question-circle"></i>
+                    </button>
+                    <button class="quick-action-btn" title="Dark Mode" id="theme-toggle">
+                        <i class="fas fa-moon"></i>
                     </button>
                 </div>
             </div>
         </aside>
 
         <!-- Main Content Area -->
-        <main class="main-content" id="main-content">
-            
+        <main class="main-content">
             <!-- Enhanced Header -->
             <header class="header">
                 <div class="header-left">
-                    <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <button class="mobile-menu-btn" id="mobile-menu">
                         <i class="fas fa-bars"></i>
                     </button>
                     <div class="page-info">
-                        <h1 id="page-title" class="page-title">Dashboard</h1>
+                        <h1 id="page-title">Dashboard</h1>
                         <nav class="breadcrumb">
-                            <span class="breadcrumb-item">Home</span>
-                            <i class="fas fa-chevron-right breadcrumb-separator"></i>
-                            <span class="breadcrumb-item active" id="breadcrumb-current">Dashboard</span>
+                            <a href="#"><i class="fas fa-home"></i></a>
+                            <i class="fas fa-chevron-right"></i>
+                            <span id="breadcrumb-current">Dashboard</span>
                         </nav>
+                    </div>
+                </div>
+                
+                <div class="header-center">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search workers, tasks, invoices..." id="global-search">
+                        <kbd>Ctrl+K</kbd>
                     </div>
                 </div>
                 
                 <div class="header-right">
                     <div class="header-actions">
-                        <!-- Quick Actions -->
-                        <button class="header-btn" id="quick-add-btn" data-tooltip="Quick Add (⌘N)">
+                        <button class="action-btn" id="quick-add-btn">
                             <i class="fas fa-plus-circle"></i>
-                            <span class="btn-text">Quick Add</span>
+                            <span>Quick Add</span>
                         </button>
-                        
-                        <!-- Notifications -->
-                        <button class="icon-btn" id="notifications-btn" data-tooltip="Notifications">
-                            <i class="fas fa-bell"></i>
-                            <span class="notification-dot"></span>
+                        <button class="action-btn secondary" id="sync-btn">
+                            <i class="fas fa-sync-alt"></i>
+                            <span>Sync</span>
                         </button>
-                        
-                        <!-- Dark Mode Toggle -->
-                        <button class="icon-btn" id="theme-toggle" data-tooltip="Toggle Theme">
-                            <i class="fas fa-moon" id="theme-icon"></i>
-                        </button>
-                        
-                        <!-- Full Screen -->
-                        <button class="icon-btn" id="fullscreen-btn" data-tooltip="Fullscreen">
-                            <i class="fas fa-expand"></i>
-                        </button>
-                        
-                        <!-- Current Date/Time -->
-                        <div class="datetime-display">
-                            <i class="fas fa-calendar-day"></i>
-                            <span id="current-datetime">Loading...</span>
+                    </div>
+                    
+                    <div class="header-widgets">
+                        <div class="date-widget">
+                            <i class="far fa-calendar"></i>
+                            <span id="current-date"></span>
+                        </div>
+                        <div class="time-widget">
+                            <i class="far fa-clock"></i>
+                            <span id="current-time"></span>
                         </div>
                     </div>
                 </div>
             </header>
 
-            <!-- Dashboard Tab Content -->
+            <!-- Dashboard Tab -->
             <div class="tab-content active" id="dashboard-tab">
-                <!-- KPI Cards -->
-                <div class="kpi-section">
-                    <div class="kpi-grid">
-                        <!-- Revenue Card -->
-                        <div class="kpi-card revenue-card">
-                            <div class="kpi-header">
-                                <div class="kpi-icon">
-                                    <svg width="48" height="48" viewBox="0 0 48 48">
-                                        <circle cx="24" cy="24" r="22" fill="url(#revenue-gradient)" opacity="0.2"/>
-                                        <path d="M24 12v24M18 18h12M18 30h12" stroke="url(#revenue-gradient)" stroke-width="3" stroke-linecap="round"/>
-                                        <defs>
-                                            <linearGradient id="revenue-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                                <stop offset="0%" stop-color="#10b981"/>
-                                                <stop offset="100%" stop-color="#34d399"/>
-                                            </linearGradient>
-                                        </defs>
-                                    </svg>
-                                </div>
-                                <div class="kpi-menu">
-                                    <button class="kpi-menu-btn"><i class="fas fa-ellipsis-h"></i></button>
-                                </div>
+                <!-- Welcome Section -->
+                <div class="welcome-section">
+                    <div class="welcome-content">
+                        <h2>Welcome back! 👋</h2>
+                        <p>Here's what's happening with your business today</p>
+                    </div>
+                    <div class="welcome-actions">
+                        <button class="btn-gradient">
+                            <i class="fas fa-download"></i>
+                            Export Today's Report
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Enhanced Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card" data-stat="hours">
+                        <div class="stat-header">
+                            <div class="stat-icon blue">
+                                <svg width="24" height="24" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/>
+                                    <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
                             </div>
-                            <div class="kpi-body">
-                                <span class="kpi-label">Today's Revenue</span>
-                                <div class="kpi-value">
-                                    <span class="currency">$</span>
-                                    <span class="amount" id="todays-revenue">0.00</span>
-                                </div>
-                                <div class="kpi-change positive">
-                                    <i class="fas fa-arrow-up"></i>
-                                    <span>12.5%</span>
-                                    <span class="kpi-period">vs yesterday</span>
-                                </div>
+                            <button class="stat-menu">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </button>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-label">Total Hours Today</span>
+                            <div class="stat-value-row">
+                                <span class="stat-value" id="total-hours-today">0</span>
+                                <span class="stat-change positive">
+                                    <i class="fas fa-arrow-up"></i> 12%
+                                </span>
                             </div>
-                            <div class="kpi-chart">
-                                <canvas id="revenue-spark"></canvas>
+                            <div class="stat-chart">
+                                <canvas id="hours-mini-chart"></canvas>
                             </div>
                         </div>
-
-                        <!-- Hours Card -->
-                        <div class="kpi-card hours-card">
-                            <div class="kpi-header">
-                                <div class="kpi-icon">
-                                    <svg width="48" height="48" viewBox="0 0 48 48">
-                                        <circle cx="24" cy="24" r="22" fill="url(#hours-gradient)" opacity="0.2"/>
-                                        <circle cx="24" cy="24" r="18" stroke="url(#hours-gradient)" stroke-width="3" fill="none"/>
-                                        <path d="M24 15v9l6 6" stroke="url(#hours-gradient)" stroke-width="3" stroke-linecap="round"/>
-                                        <defs>
-                                            <linearGradient id="hours-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                                <stop offset="0%" stop-color="#3b82f6"/>
-                                                <stop offset="100%" stop-color="#60a5fa"/>
-                                            </linearGradient>
-                                        </defs>
-                                    </svg>
-                                </div>
-                                <div class="kpi-menu">
-                                    <button class="kpi-menu-btn"><i class="fas fa-ellipsis-h"></i></button>
-                                </div>
+                    </div>
+                    
+                    <div class="stat-card" data-stat="workers">
+                        <div class="stat-header">
+                            <div class="stat-icon green">
+                                <i class="fas fa-user-check fa-lg"></i>
                             </div>
-                            <div class="kpi-body">
-                                <span class="kpi-label">Total Hours Today</span>
-                                <div class="kpi-value">
-                                    <span class="amount" id="total-hours">0</span>
-                                    <span class="unit">hrs</span>
-                                </div>
-                                <div class="kpi-change neutral">
-                                    <i class="fas fa-minus"></i>
-                                    <span>Same as usual</span>
-                                </div>
+                            <button class="stat-menu">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </button>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-label">Active Workers</span>
+                            <div class="stat-value-row">
+                                <span class="stat-value" id="active-workers">0</span>
+                                <span class="stat-subtitle">of <span id="total-workers">0</span> total</span>
                             </div>
-                            <div class="kpi-progress">
+                            <div class="stat-progress">
                                 <div class="progress-bar">
-                                    <div class="progress-fill" id="hours-progress" style="width: 0%"></div>
-                                </div>
-                                <span class="progress-label">0% of daily goal</span>
-                            </div>
-                        </div>
-
-                        <!-- Workers Card -->
-                        <div class="kpi-card workers-card">
-                            <div class="kpi-header">
-                                <div class="kpi-icon">
-                                    <svg width="48" height="48" viewBox="0 0 48 48">
-                                        <circle cx="24" cy="24" r="22" fill="url(#workers-gradient)" opacity="0.2"/>
-                                        <circle cx="18" cy="20" r="4" fill="url(#workers-gradient)"/>
-                                        <circle cx="30" cy="20" r="4" fill="url(#workers-gradient)"/>
-                                        <path d="M10 36c0-4 4-7 8-7s8 3 8 7M22 36c0-4 4-7 8-7s8 3 8 7" fill="url(#workers-gradient)"/>
-                                        <defs>
-                                            <linearGradient id="workers-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                                <stop offset="0%" stop-color="#8b5cf6"/>
-                                                <stop offset="100%" stop-color="#a78bfa"/>
-                                            </linearGradient>
-                                        </defs>
-                                    </svg>
-                                </div>
-                                <div class="kpi-menu">
-                                    <button class="kpi-menu-btn"><i class="fas fa-ellipsis-h"></i></button>
-                                </div>
-                            </div>
-                            <div class="kpi-body">
-                                <span class="kpi-label">Active Workers</span>
-                                <div class="kpi-value">
-                                    <span class="amount" id="active-workers">0</span>
-                                    <span class="unit">/ <span id="total-workers">0</span></span>
-                                </div>
-                                <div class="kpi-avatars">
-                                    <div class="avatar-group" id="worker-avatars">
-                                        <!-- Dynamically populated -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Tasks Card -->
-                        <div class="kpi-card tasks-card">
-                            <div class="kpi-header">
-                                <div class="kpi-icon">
-                                    <svg width="48" height="48" viewBox="0 0 48 48">
-                                        <rect x="10" y="10" width="28" height="28" rx="4" fill="url(#tasks-gradient)" opacity="0.2"/>
-                                        <path d="M16 24l4 4l8-8" stroke="url(#tasks-gradient)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <defs>
-                                            <linearGradient id="tasks-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                                <stop offset="0%" stop-color="#f59e0b"/>
-                                                <stop offset="100%" stop-color="#fbbf24"/>
-                                            </linearGradient>
-                                        </defs>
-                                    </svg>
-                                </div>
-                                <div class="kpi-menu">
-                                    <button class="kpi-menu-btn"><i class="fas fa-ellipsis-h"></i></button>
-                                </div>
-                            </div>
-                            <div class="kpi-body">
-                                <span class="kpi-label">Tasks Completed</span>
-                                <div class="kpi-value">
-                                    <span class="amount" id="tasks-completed">0</span>
-                                    <span class="unit">today</span>
-                                </div>
-                                <div class="kpi-breakdown">
-                                    <span class="breakdown-item urgent">
-                                        <i class="fas fa-fire"></i> <span id="urgent-tasks">0</span> urgent
-                                    </span>
-                                    <span class="breakdown-item pending">
-                                        <i class="fas fa-clock"></i> <span id="pending-tasks">0</span> pending
-                                    </span>
+                                    <div class="progress-fill green" id="workers-progress" style="width: 0%"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
+                    <div class="stat-card" data-stat="tasks">
+                        <div class="stat-header">
+                            <div class="stat-icon purple">
+                                <i class="fas fa-clipboard-check fa-lg"></i>
+                            </div>
+                            <button class="stat-menu">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </button>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-label">Tasks Completed</span>
+                            <div class="stat-value-row">
+                                <span class="stat-value" id="tasks-completed">0</span>
+                                <span class="stat-change negative">
+                                    <i class="fas fa-arrow-down"></i> 5%
+                                </span>
+                            </div>
+                            <div class="stat-breakdown">
+                                <span class="breakdown-item">
+                                    <i class="fas fa-circle text-success"></i> 12 Done
+                                </span>
+                                <span class="breakdown-item">
+                                    <i class="fas fa-circle text-warning"></i> 5 Pending
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card" data-stat="revenue">
+                        <div class="stat-header">
+                            <div class="stat-icon orange">
+                                <i class="fas fa-dollar-sign fa-lg"></i>
+                            </div>
+                            <button class="stat-menu">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </button>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-label">Today's Revenue</span>
+                            <div class="stat-value-row">
+                                <span class="stat-value" id="todays-revenue">$0</span>
+                                <span class="stat-change positive">
+                                    <i class="fas fa-arrow-up"></i> 23%
+                                </span>
+                            </div>
+                            <div class="stat-sparkline" id="revenue-sparkline"></div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Activity Timeline & Charts -->
+                <!-- Dashboard Grid Layout -->
                 <div class="dashboard-grid">
-                    <!-- Live Activity Feed -->
-                    <div class="dashboard-card activity-feed">
+                    <!-- Activity Timeline -->
+                    <div class="dashboard-card timeline-card">
                         <div class="card-header">
-                            <h3 class="card-title">
-                                <i class="fas fa-stream"></i>
-                                Live Activity Feed
-                            </h3>
+                            <h3><i class="fas fa-stream"></i> Activity Timeline</h3>
                             <div class="card-actions">
-                                <button class="btn-icon-sm" id="refresh-feed">
-                                    <i class="fas fa-sync-alt"></i>
-                                </button>
-                                <button class="btn-icon-sm">
-                                    <i class="fas fa-filter"></i>
-                                </button>
+                                <button class="btn-icon"><i class="fas fa-filter"></i></button>
+                                <button class="btn-icon"><i class="fas fa-expand"></i></button>
                             </div>
                         </div>
                         <div class="card-body">
                             <div class="timeline" id="activity-timeline">
-                                <!-- Dynamically populated -->
                                 <div class="timeline-item">
                                     <div class="timeline-marker success">
                                         <i class="fas fa-check"></i>
                                     </div>
                                     <div class="timeline-content">
                                         <div class="timeline-header">
-                                            <span class="timeline-title">No activities yet</span>
-                                            <span class="timeline-time">Now</span>
+                                            <span class="timeline-title">Task Completed</span>
+                                            <span class="timeline-time">2 min ago</span>
                                         </div>
-                                        <p class="timeline-description">Start tracking to see activities</p>
+                                        <p class="timeline-description">John Doe completed "Repair Hiboy Scooter"</p>
                                     </div>
                                 </div>
+                                <!-- More timeline items will be added dynamically -->
                             </div>
                         </div>
                     </div>
@@ -461,15 +386,12 @@
                     <!-- Performance Chart -->
                     <div class="dashboard-card chart-card">
                         <div class="card-header">
-                            <h3 class="card-title">
-                                <i class="fas fa-chart-area"></i>
-                                Weekly Performance
-                            </h3>
+                            <h3><i class="fas fa-chart-line"></i> Weekly Performance</h3>
                             <div class="card-actions">
-                                <select class="chart-period-select" id="chart-period">
-                                    <option value="week">This Week</option>
-                                    <option value="month">This Month</option>
-                                    <option value="year">This Year</option>
+                                <select class="chart-filter">
+                                    <option>This Week</option>
+                                    <option>Last Week</option>
+                                    <option>This Month</option>
                                 </select>
                             </div>
                         </div>
@@ -478,50 +400,39 @@
                         </div>
                     </div>
 
-                    <!-- Quick Stats Grid -->
-                    <div class="dashboard-card stats-card">
+                    <!-- Quick Stats -->
+                    <div class="dashboard-card stats-overview">
                         <div class="card-header">
-                            <h3 class="card-title">
-                                <i class="fas fa-tachometer-alt"></i>
-                                Quick Stats
-                            </h3>
+                            <h3><i class="fas fa-tachometer-alt"></i> Quick Stats</h3>
                         </div>
                         <div class="card-body">
                             <div class="quick-stats-grid">
                                 <div class="quick-stat">
-                                    <div class="stat-icon productivity">
-                                        <i class="fas fa-rocket"></i>
-                                    </div>
-                                    <div class="stat-details">
-                                        <span class="stat-value">87%</span>
-                                        <span class="stat-label">Productivity</span>
+                                    <i class="fas fa-user-clock text-primary"></i>
+                                    <div class="quick-stat-info">
+                                        <span class="quick-stat-value">156</span>
+                                        <span class="quick-stat-label">Total Hours This Month</span>
                                     </div>
                                 </div>
                                 <div class="quick-stat">
-                                    <div class="stat-icon efficiency">
-                                        <i class="fas fa-bolt"></i>
-                                    </div>
-                                    <div class="stat-details">
-                                        <span class="stat-value">94%</span>
-                                        <span class="stat-label">Efficiency</span>
+                                    <i class="fas fa-tasks text-success"></i>
+                                    <div class="quick-stat-info">
+                                        <span class="quick-stat-value">89%</span>
+                                        <span class="quick-stat-label">Task Completion Rate</span>
                                     </div>
                                 </div>
                                 <div class="quick-stat">
-                                    <div class="stat-icon attendance">
-                                        <i class="fas fa-user-check"></i>
-                                    </div>
-                                    <div class="stat-details">
-                                        <span class="stat-value">100%</span>
-                                        <span class="stat-label">Attendance</span>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <div class="quick-stat-info">
+                                        <span class="quick-stat-value">4.8</span>
+                                        <span class="quick-stat-label">Average Rating</span>
                                     </div>
                                 </div>
                                 <div class="quick-stat">
-                                    <div class="stat-icon satisfaction">
-                                        <i class="fas fa-smile"></i>
-                                    </div>
-                                    <div class="stat-details">
-                                        <span class="stat-value">4.8</span>
-                                        <span class="stat-label">Satisfaction</span>
+                                    <i class="fas fa-chart-pie text-info"></i>
+                                    <div class="quick-stat-info">
+                                        <span class="quick-stat-value">$4,250</span>
+                                        <span class="quick-stat-label">Monthly Revenue</span>
                                     </div>
                                 </div>
                             </div>
@@ -529,424 +440,334 @@
                     </div>
 
                     <!-- Top Workers -->
-                    <div class="dashboard-card top-workers-card">
+                    <div class="dashboard-card">
                         <div class="card-header">
-                            <h3 class="card-title">
-                                <i class="fas fa-trophy"></i>
-                                Top Performers
-                            </h3>
+                            <h3><i class="fas fa-trophy"></i> Top Performers</h3>
                             <a href="#" class="card-link">View All</a>
                         </div>
                         <div class="card-body">
                             <div class="top-workers-list" id="top-workers">
-                                <!-- Dynamically populated -->
+                                <!-- Will be populated dynamically -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Tasks -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-clipboard-list"></i> Recent Tasks</h3>
+                            <a href="#" class="card-link">View All</a>
+                        </div>
+                        <div class="card-body">
+                            <div class="recent-tasks-list" id="recent-tasks">
+                                <!-- Will be populated dynamically -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Calendar Widget -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-calendar"></i> Schedule Overview</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="mini-calendar" id="mini-calendar">
+                                <!-- Mini calendar will be rendered here -->
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Time Clock Tab -->
-            <div class="tab-content" id="time-clock-tab">
-                <div class="time-clock-container">
-                    <!-- Digital Clock Display -->
-                    <div class="clock-display-card">
-                        <div class="digital-clock">
-                            <svg class="clock-svg" width="300" height="300" viewBox="0 0 300 300">
-                                <!-- Clock Face -->
-                                <circle cx="150" cy="150" r="145" fill="url(#clock-face-gradient)" opacity="0.1"/>
-                                <circle cx="150" cy="150" r="140" stroke="url(#clock-face-gradient)" stroke-width="2" fill="none"/>
-                                
-                                <!-- Hour Markers -->
-                                <g id="hour-markers">
-                                    <!-- Will be populated by JavaScript -->
-                                </g>
-                                
-                                <!-- Clock Hands -->
-                                <line id="hour-hand" x1="150" y1="150" x2="150" y2="90" stroke="url(#clock-hand-gradient)" stroke-width="6" stroke-linecap="round"/>
-                                <line id="minute-hand" x1="150" y1="150" x2="150" y2="50" stroke="url(#clock-hand-gradient)" stroke-width="4" stroke-linecap="round"/>
-                                <line id="second-hand" x1="150" y1="150" x2="150" y2="40" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/>
-                                
-                                <!-- Center Dot -->
-                                <circle cx="150" cy="150" r="8" fill="url(#clock-hand-gradient)"/>
-                                
-                                <defs>
-                                    <linearGradient id="clock-face-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" stop-color="#6366f1"/>
-                                        <stop offset="100%" stop-color="#8b5cf6"/>
-                                    </linearGradient>
-                                    <linearGradient id="clock-hand-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" stop-color="#1e293b"/>
-                                        <stop offset="100%" stop-color="#475569"/>
-                                    </linearGradient>
-                                </defs>
-                            </svg>
-                            <div class="digital-time" id="digital-time">00:00:00</div>
-                            <div class="digital-date" id="digital-date">Loading...</div>
+            <!-- Timesheet Tab -->
+            <div class="tab-content" id="timesheet-tab">
+                <div class="timesheet-header">
+                    <div class="timesheet-controls">
+                        <button class="btn-secondary" id="prev-week">
+                            <i class="fas fa-chevron-left"></i>
+                            Previous
+                        </button>
+                        <div class="week-selector">
+                            <i class="fas fa-calendar-week"></i>
+                            <span id="current-week">Week of Nov 6 - Nov 12, 2024</span>
                         </div>
+                        <button class="btn-secondary" id="next-week">
+                            Next
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
                     </div>
-
-                    <!-- Clock In/Out Controls -->
-                    <div class="clock-controls-card">
-                        <div class="clock-worker-select">
-                            <label for="clock-worker">Select Worker</label>
-                            <select id="clock-worker" class="form-select">
-                                <option value="">Choose worker...</option>
-                            </select>
-                        </div>
-                        
-                        <div class="clock-buttons">
-                            <button class="clock-btn clock-in" id="clock-in-btn">
-                                <i class="fas fa-sign-in-alt"></i>
-                                <span>Clock In</span>
-                            </button>
-                            <button class="clock-btn clock-out" id="clock-out-btn" disabled>
-                                <i class="fas fa-sign-out-alt"></i>
-                                <span>Clock Out</span>
-                            </button>
-                            <button class="clock-btn break" id="break-btn" disabled>
-                                <i class="fas fa-coffee"></i>
-                                <span>Take Break</span>
-                            </button>
-                        </div>
-
-                        <div class="current-session" id="current-session" style="display: none;">
-                            <h4>Current Session</h4>
-                            <div class="session-info">
-                                <div class="session-item">
-                                    <span class="session-label">Started:</span>
-                                    <span class="session-value" id="session-start">--:--</span>
-                                </div>
-                                <div class="session-item">
-                                    <span class="session-label">Duration:</span>
-                                    <span class="session-value" id="session-duration">0:00:00</span>
-                                </div>
-                                <div class="session-item">
-                                    <span class="session-label">Breaks:</span>
-                                    <span class="session-value" id="session-breaks">0</span>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="timesheet-actions">
+                        <button class="btn-primary">
+                            <i class="fas fa-plus"></i>
+                            Add Entry
+                        </button>
+                        <button class="btn-secondary">
+                            <i class="fas fa-file-export"></i>
+                            Export
+                        </button>
                     </div>
-
-                    <!-- Today's Time Logs -->
-                    <div class="time-logs-card">
-                        <div class="card-header">
-                            <h3 class="card-title">
-                                <i class="fas fa-history"></i>
-                                Today's Time Logs
-                            </h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="time-logs-list" id="time-logs">
-                                <!-- Dynamically populated -->
-                            </div>
-                        </div>
-                    </div>
+                </div>
+                
+                <div class="timesheet-container">
+                    <table class="timesheet-table">
+                        <thead>
+                            <tr>
+                                <th>Worker</th>
+                                <th>Mon</th>
+                                <th>Tue</th>
+                                <th>Wed</th>
+                                <th>Thu</th>
+                                <th>Fri</th>
+                                <th>Sat</th>
+                                <th>Sun</th>
+                                <th>Total</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="timesheet-body">
+                            <!-- Timesheet entries will be populated here -->
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td><strong>Daily Totals</strong></td>
+                                <td class="total">0</td>
+                                <td class="total">0</td>
+                                <td class="total">0</td>
+                                <td class="total">0</td>
+                                <td class="total">0</td>
+                                <td class="total">0</td>
+                                <td class="total">0</td>
+                                <td class="total grand-total">0</td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
                 </div>
             </div>
 
             <!-- Workers Tab -->
             <div class="tab-content" id="workers-tab">
-                <div class="workers-header">
-                    <div class="workers-actions">
+                <div class="section-header">
+                    <div class="section-title">
+                        <h2>Workforce Management</h2>
+                        <p class="section-subtitle">Manage your team members and their information</p>
+                    </div>
+                    <div class="section-actions">
+                        <div class="view-toggle">
+                            <button class="view-btn active" data-view="grid">
+                                <i class="fas fa-th"></i>
+                            </button>
+                            <button class="view-btn" data-view="list">
+                                <i class="fas fa-list"></i>
+                            </button>
+                        </div>
                         <button class="btn-primary" id="add-worker-btn">
                             <i class="fas fa-user-plus"></i>
                             Add Worker
                         </button>
-                        <button class="btn-secondary" id="import-workers-btn">
-                            <i class="fas fa-file-import"></i>
-                            Import
-                        </button>
-                        <button class="btn-secondary" id="export-workers-btn">
-                            <i class="fas fa-file-export"></i>
-                            Export
-                        </button>
-                    </div>
-                    <div class="workers-filters">
-                        <div class="search-box">
-                            <i class="fas fa-search"></i>
-                            <input type="text" placeholder="Search workers..." id="worker-search">
-                        </div>
-                        <select class="filter-select" id="worker-status-filter">
-                            <option value="all">All Status</option>
-                            <option value="active">Active</option>
-                            <option value="inactive">Inactive</option>
-                            <option value="on-leave">On Leave</option>
-                        </select>
-                        <button class="btn-icon" id="workers-grid-view">
-                            <i class="fas fa-th"></i>
-                        </button>
-                        <button class="btn-icon active" id="workers-list-view">
-                            <i class="fas fa-list"></i>
-                        </button>
                     </div>
                 </div>
 
-                <div class="workers-container" id="workers-container">
-                    <!-- Dynamically populated -->
+                <div class="workers-filters">
+                    <div class="filter-group">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search workers..." id="worker-search">
+                    </div>
+                    <select class="filter-select">
+                        <option>All Status</option>
+                        <option>Active</option>
+                        <option>Inactive</option>
+                        <option>On Leave</option>
+                    </select>
+                    <select class="filter-select">
+                        <option>All Departments</option>
+                        <option>Delivery</option>
+                        <option>Maintenance</option>
+                        <option>General</option>
+                    </select>
                 </div>
-            </div>
-
-            <!-- Tasks Tab -->
-            <div class="tab-content" id="tasks-tab">
-                <div class="tasks-header">
-                    <div class="tasks-actions">
-                        <button class="btn-primary" id="add-task-btn">
-                            <i class="fas fa-plus"></i>
-                            New Task
-                        </button>
-                        <div class="view-toggle">
-                            <button class="view-btn active" data-view="kanban">
-                                <i class="fas fa-columns"></i>
-                                Kanban
-                            </button>
-                            <button class="view-btn" data-view="list">
-                                <i class="fas fa-list"></i>
-                                List
-                            </button>
-                            <button class="view-btn" data-view="calendar">
-                                <i class="fas fa-calendar"></i>
-                                Calendar
-                            </button>
-                        </div>
-                    </div>
-                    <div class="tasks-filters">
-                        <select class="filter-select" id="task-assignee-filter">
-                            <option value="all">All Assignees</option>
-                        </select>
-                        <select class="filter-select" id="task-priority-filter">
-                            <option value="all">All Priorities</option>
-                            <option value="urgent">Urgent</option>
-                            <option value="high">High</option>
-                            <option value="medium">Medium</option>
-                            <option value="low">Low</option>
-                        </select>
-                        <input type="date" class="date-filter" id="task-date-filter">
-                    </div>
-                </div>
-
-                <!-- Kanban Board -->
-                <div class="kanban-board" id="kanban-board">
-                    <div class="kanban-column" data-status="todo">
-                        <div class="kanban-header">
-                            <h3 class="kanban-title">
-                                <i class="fas fa-circle-notch"></i>
-                                To Do
-                            </h3>
-                            <span class="kanban-count">0</span>
-                        </div>
-                        <div class="kanban-items" id="kanban-todo">
-                            <!-- Dynamically populated -->
-                        </div>
-                        <button class="kanban-add-btn">
-                            <i class="fas fa-plus"></i>
-                            Add Task
-                        </button>
-                    </div>
-
-                    <div class="kanban-column" data-status="in-progress">
-                        <div class="kanban-header">
-                            <h3 class="kanban-title">
-                                <i class="fas fa-spinner"></i>
-                                In Progress
-                            </h3>
-                            <span class="kanban-count">0</span>
-                        </div>
-                        <div class="kanban-items" id="kanban-progress">
-                            <!-- Dynamically populated -->
-                        </div>
-                    </div>
-
-                    <div class="kanban-column" data-status="review">
-                        <div class="kanban-header">
-                            <h3 class="kanban-title">
-                                <i class="fas fa-eye"></i>
-                                Review
-                            </h3>
-                            <span class="kanban-count">0</span>
-                        </div>
-                        <div class="kanban-items" id="kanban-review">
-                            <!-- Dynamically populated -->
-                        </div>
-                    </div>
-
-                    <div class="kanban-column" data-status="done">
-                        <div class="kanban-header">
-                            <h3 class="kanban-title">
-                                <i class="fas fa-check-circle"></i>
-                                Done
-                            </h3>
-                            <span class="kanban-count">0</span>
-                        </div>
-                        <div class="kanban-items" id="kanban-done">
-                            <!-- Dynamically populated -->
-                        </div>
+                
+                <div class="workers-container">
+                    <div class="workers-grid" id="workers-list">
+                        <!-- Enhanced worker cards will be populated here -->
                     </div>
                 </div>
             </div>
 
-            <!-- Other tabs will be populated similarly -->
-            
+            <!-- Other tabs will be populated with similar enhanced content -->
         </main>
-    </div>
-
-    <!-- Notification Toast Container -->
-    <div id="toast-container" class="toast-container"></div>
-
-    <!-- Command Palette (Cmd+K) -->
-    <div class="command-palette" id="command-palette">
-        <div class="command-palette-overlay"></div>
-        <div class="command-palette-modal">
-            <div class="command-palette-header">
-                <i class="fas fa-search"></i>
-                <input type="text" class="command-input" id="command-input" placeholder="Type a command or search...">
-                <kbd>ESC</kbd>
-            </div>
-            <div class="command-palette-results" id="command-results">
-                <!-- Dynamically populated -->
-            </div>
-        </div>
     </div>
 
     <!-- Enhanced Modals -->
     <!-- Quick Add Modal -->
     <div class="modal" id="quick-add-modal">
         <div class="modal-overlay" onclick="closeModal('quick-add-modal')"></div>
-        <div class="modal-content large">
+        <div class="modal-content modal-lg">
             <div class="modal-header">
-                <h3 class="modal-title">
+                <div class="modal-title">
                     <i class="fas fa-bolt"></i>
-                    Quick Add Entry
-                </h3>
+                    <h3>Quick Add Entry</h3>
+                </div>
                 <button class="modal-close" onclick="closeModal('quick-add-modal')">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
             <div class="modal-body">
+                <div class="quick-add-tabs">
+                    <button class="tab-btn active" data-quick-tab="time">
+                        <i class="fas fa-clock"></i> Time Entry
+                    </button>
+                    <button class="tab-btn" data-quick-tab="task">
+                        <i class="fas fa-tasks"></i> Task
+                    </button>
+                    <button class="tab-btn" data-quick-tab="expense">
+                        <i class="fas fa-receipt"></i> Expense
+                    </button>
+                    <button class="tab-btn" data-quick-tab="note">
+                        <i class="fas fa-sticky-note"></i> Note
+                    </button>
+                </div>
+                
                 <form id="quick-add-form" class="enhanced-form">
-                    <div class="form-tabs">
-                        <button type="button" class="form-tab active" data-tab="time-entry">
-                            <i class="fas fa-clock"></i>
-                            Time Entry
-                        </button>
-                        <button type="button" class="form-tab" data-tab="task-entry">
-                            <i class="fas fa-tasks"></i>
-                            Task
-                        </button>
-                        <button type="button" class="form-tab" data-tab="expense-entry">
-                            <i class="fas fa-receipt"></i>
-                            Expense
-                        </button>
-                    </div>
-
-                    <div class="form-content active" id="time-entry-content">
+                    <!-- Time Entry Tab Content -->
+                    <div class="quick-tab-content active" id="quick-time-tab">
                         <div class="form-grid">
                             <div class="form-group">
                                 <label for="quick-worker">
-                                    <i class="fas fa-user"></i>
-                                    Worker
+                                    <i class="fas fa-user"></i> Worker
                                 </label>
-                                <select id="quick-worker" class="form-control" required>
-                                    <option value="">Select worker...</option>
+                                <select id="quick-worker" required>
+                                    <option value="">Select a worker...</option>
                                 </select>
                             </div>
                             
                             <div class="form-group">
                                 <label for="quick-project">
-                                    <i class="fas fa-briefcase"></i>
-                                    Project/Client
+                                    <i class="fas fa-briefcase"></i> Project/Location
                                 </label>
-                                <input type="text" id="quick-project" class="form-control" placeholder="Optional">
+                                <select id="quick-project">
+                                    <option value="">General</option>
+                                    <option value="delivery">Delivery Service</option>
+                                    <option value="maintenance">Maintenance</option>
+                                    <option value="custom">Custom Project</option>
+                                </select>
                             </div>
-                        </div>
-
-                        <div class="form-grid">
+                            
                             <div class="form-group">
                                 <label for="quick-date">
-                                    <i class="fas fa-calendar"></i>
-                                    Date
+                                    <i class="fas fa-calendar"></i> Date
                                 </label>
-                                <input type="date" id="quick-date" class="form-control" required>
+                                <input type="date" id="quick-date" required>
                             </div>
                             
                             <div class="form-group">
-                                <label for="quick-time-start">
-                                    <i class="fas fa-play"></i>
-                                    Start Time
+                                <label for="quick-time-range">
+                                    <i class="fas fa-clock"></i> Time Range
                                 </label>
-                                <input type="time" id="quick-time-start" class="form-control">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="quick-time-end">
-                                    <i class="fas fa-stop"></i>
-                                    End Time
-                                </label>
-                                <input type="time" id="quick-time-end" class="form-control">
+                                <div class="time-range">
+                                    <input type="time" id="quick-start-time" placeholder="Start">
+                                    <span>to</span>
+                                    <input type="time" id="quick-end-time" placeholder="End">
+                                </div>
                             </div>
                             
                             <div class="form-group">
                                 <label for="quick-hours">
-                                    <i class="fas fa-hourglass-half"></i>
-                                    Total Hours
+                                    <i class="fas fa-hourglass-half"></i> Total Hours
                                 </label>
-                                <input type="number" id="quick-hours" class="form-control" min="0.25" max="24" step="0.25" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="quick-description">
-                                <i class="fas fa-align-left"></i>
-                                Task Description
-                            </label>
-                            <textarea id="quick-description" class="form-control" rows="3" placeholder="What was done?" required></textarea>
-                        </div>
-
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label for="quick-rate">
-                                    <i class="fas fa-dollar-sign"></i>
-                                    Hourly Rate
-                                </label>
-                                <input type="number" id="quick-rate" class="form-control" min="0" step="0.01" required>
+                                <input type="number" id="quick-hours" min="0.5" max="24" step="0.25" required>
                             </div>
                             
                             <div class="form-group">
-                                <label for="quick-category">
-                                    <i class="fas fa-tag"></i>
-                                    Category
+                                <label for="quick-rate">
+                                    <i class="fas fa-dollar-sign"></i> Hourly Rate
                                 </label>
-                                <select id="quick-category" class="form-control">
-                                    <option value="general">General</option>
-                                    <option value="delivery">Delivery</option>
-                                    <option value="repair">Repair</option>
-                                    <option value="maintenance">Maintenance</option>
-                                    <option value="admin">Administrative</option>
-                                </select>
+                                <input type="number" id="quick-rate" min="0" step="0.01" placeholder="15.00" required>
                             </div>
                         </div>
-
+                        
                         <div class="form-group">
-                            <label class="checkbox-label">
-                                <input type="checkbox" id="quick-billable">
-                                <span>Billable to client</span>
+                            <label for="quick-task-desc">
+                                <i class="fas fa-clipboard"></i> Task Description
                             </label>
+                            <textarea id="quick-task-desc" rows="3" placeholder="Describe the work performed..." required></textarea>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="quick-break-time">
+                                    <i class="fas fa-coffee"></i> Break Time (minutes)
+                                </label>
+                                <input type="number" id="quick-break-time" min="0" max="120" step="15" placeholder="0">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="quick-overtime">
+                                    <i class="fas fa-business-time"></i> Overtime
+                                </label>
+                                <label class="switch">
+                                    <input type="checkbox" id="quick-overtime">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="quick-attachments">
+                                <i class="fas fa-paperclip"></i> Attachments
+                            </label>
+                            <div class="file-upload-area">
+                                <input type="file" id="quick-attachments" multiple accept="image/*,.pdf">
+                                <div class="file-upload-text">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <p>Drop files here or click to upload</p>
+                                    <span>Supports: Images, PDFs (Max 5MB)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <div class="form-actions">
+                            <button type="button" class="btn-secondary" onclick="closeModal('quick-add-modal')">
+                                Cancel
+                            </button>
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-save"></i>
+                                Save Entry
+                            </button>
+                        </div>
+                        <div class="form-summary">
+                            <span>Total: <strong id="quick-total">$0.00</strong></span>
                         </div>
                     </div>
                 </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn-secondary" onclick="closeModal('quick-add-modal')">
-                    Cancel
-                </button>
-                <button type="submit" form="quick-add-form" class="btn-primary">
-                    <i class="fas fa-save"></i>
-                    Save Entry
-                </button>
-            </div>
         </div>
     </div>
 
-    <!-- Scripts -->
+    <!-- Notification Toast Container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Context Menu -->
+    <div class="context-menu" id="context-menu">
+        <div class="context-menu-item">
+            <i class="fas fa-edit"></i> Edit
+        </div>
+        <div class="context-menu-item">
+            <i class="fas fa-copy"></i> Duplicate
+        </div>
+        <div class="context-menu-item">
+            <i class="fas fa-trash"></i> Delete
+        </div>
+    </div>
+
+    <!-- JavaScript Files -->
     <script src="js/app.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/workers.js"></script>
+    <script src="js/tasks.js"></script>
+    <script src="js/reports.js"></script>
+    <script src="js/utils.js"></script>
+</body>
+</html>
